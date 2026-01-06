@@ -17,7 +17,8 @@ body {
     font-family: var(--font-main);
     color: var(--text-light);
     background-color: var(--bg-deep);
-    overflow: hidden; /* Important for parallax wrapper to handle scroll */
+    overflow: hidden;
+    /* Important for parallax wrapper to handle scroll */
 }
 
 /* Parallax Mechanics */
@@ -25,7 +26,8 @@ body {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
-    perspective: 300px; /* Depth of the scene */
+    perspective: 300px;
+    /* Depth of the scene */
     scroll-behavior: smooth;
 }
 
@@ -50,7 +52,8 @@ body {
 }
 
 .parallax-layer--back {
-    transform: translateZ(-300px) scale(2); /* Pushed back and scaled up */
+    transform: translateZ(-300px) scale(2);
+    /* Pushed back and scaled up */
     z-index: 1;
 }
 
@@ -103,7 +106,8 @@ nav a {
     transition: color 0.3s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     color: var(--accent-cyan);
 }
 
@@ -116,10 +120,11 @@ nav a:hover, nav a.active {
 
 /* Hero Section */
 .hero-group .parallax-layer--back {
-    background-image: url('assets/nano_banana_hero.png');
+    background-image: url('assets/university_hero.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.8);
+    filter: brightness(0.7);
+    /* Slightly darker for better text contrast */
 }
 
 .hero-content {
@@ -130,8 +135,7 @@ nav a:hover, nav a.active {
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    /* Add a slight dark gradient over the hero text for readability */
-    background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,12,24,0.8) 100%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 12, 24, 0.6) 100%);
 }
 
 .hero-title {
@@ -144,6 +148,7 @@ nav a:hover, nav a.active {
 
 .text-gradient {
     background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -152,8 +157,9 @@ nav a:hover, nav a.active {
     font-size: 1.25rem;
     max-width: 600px;
     margin: 2rem 0;
-    color: #a0aab5;
+    color: #e0e6ed;
     line-height: 1.6;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -182,13 +188,14 @@ nav a:hover, nav a.active {
 
 /* Features Section */
 .content-group {
-    background-color: var(--bg-deep); /* Fallback */
+    background-color: var(--bg-deep);
+    /* Fallback */
 }
 
 .pattern-bg {
-    background-image: url('assets/nano_banana_pattern.png');
+    background-image: url('assets/tech_pattern.png');
     background-repeat: repeat;
-    opacity: 0.1;
+    opacity: 0.15;
 }
 
 .section-container {
@@ -266,15 +273,21 @@ nav a:hover, nav a.active {
 
 /* Footer Section */
 .footer-group {
-    height: 50vh; /* Shorter section */
+    height: 50vh;
+    /* Shorter section */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background: black;
+    position: relative;
+    z-index: 2;
+    /* Ensure it sits on top if needed */
 }
 
 .footer-content {
     text-align: center;
+    width: 100%;
 }
 
 .secondary-cta {
@@ -295,15 +308,91 @@ footer {
     color: #555;
     border-top: 1px solid #111;
     padding-top: 20px;
+    width: 100%;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 3rem;
+    body {
+        overflow-y: auto;
+        /* Allow normal scrolling */
+        overflow-x: hidden;
     }
-    
+
     .parallax-wrapper {
-        perspective: 1px; /* Disable 3D effect on mobile if buggy, or adjust */
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: visible;
+        perspective: none;
+        /* Disable 3D perspective */
+        transform-style: flat;
+    }
+
+    .parallax-group {
+        height: auto;
+        /* Allow content to dictate height */
+        min-height: 100vh;
+        transform-style: flat;
+        position: relative;
+        overflow: hidden;
+        /* Contain children */
+    }
+
+    .parallax-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: none !important;
+        /* Reset 3D transforms */
+    }
+
+    .parallax-layer--base {
+        position: relative;
+        /* Make base layer relative to stack normally */
+    }
+
+    /* Adjust specific layer styles for flat layout */
+    .parallax-layer--back {
+        z-index: 0;
+    }
+
+    .hero-group .parallax-layer--back {
+        /* Since we removed scale(2), we need to ensure it covers */
+        height: 100%;
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .glass-nav {
+        padding: 1rem;
+    }
+
+    .glass-nav nav {
+        display: none;
+        /* Hide main nav text for simplicity or add hamburger later */
+    }
+
+    /* Optional: Show just CTA or simple menu? Let's keep it simple for now */
+
+    .section-container {
+        padding: 60px 20px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        /* Single column */
+    }
+
+    .footer-group {
+        height: auto;
+        padding: 60px 20px;
     }
 }
