@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - Global Path</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="page-body">
+
+    <!-- Navigation (reused) -->
+    <header class="glass-nav">
+        <div class="logo">HYPER B CONSULTING</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#programs">Programs</a>
+            <a href="visa.html">Visa</a>
+            <a href="contact.html" class="nav-cta">Contact</a>
+        </nav>
+    </header>
+
+    <div class="split-container">
+
+        <!-- Left Side: Visual & Message -->
+        <div class="split-left">
+            <div class="split-content-wrapper">
+                <h1 class="split-title">Hyper B와 함께<br>미래를 설계하세요</h1>
+                <p class="split-subtitle">Your journey to the world's top universities starts here.</p>
+            </div>
+            <div class="split-image-overlay"></div>
+        </div>
+
+        <!-- Right Side: Application Form -->
+        <div class="split-right">
+            <div class="form-wrapper glass-card">
+                <h2>Application Form</h2>
+                <p class="form-desc">Start your free roadmap consultation today.</p>
+
+                <form class="apply-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="홍길동" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Target Country</label>
+                        <div class="select-wrapper">
+                            <select id="country" name="country" required>
+                                <option value="" disabled selected>Select Country</option>
+                                <option value="usa">United States (F-1)</option>
+                                <option value="canada">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="australia">Australia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="grade">Current Grade</label>
+                        <input type="text" id="grade" name="grade" placeholder="e.g. High School 2nd Year" required>
+                    </div>
+
+                    <button type="submit" class="cta-btn main-cta full-width">무료 로드맵 받아보기</button>
+                    <p class="form-note">We value your privacy. Your info is safe with us.</p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

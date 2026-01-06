@@ -43,6 +43,13 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    pointer-events: none;
+    /* vital for click-through */
+}
+
+/* Enable clicks on content */
+.parallax-layer>* {
+    pointer-events: auto;
 }
 
 /* Depth Levels */
@@ -120,11 +127,53 @@ nav a.active {
 
 /* Hero Section */
 .hero-group .parallax-layer--back {
-    background-image: url('assets/university_hero.png');
+    background-image: url('assets/university_hero_ivy.png');
     background-size: cover;
     background-position: center;
     filter: brightness(0.7);
     /* Slightly darker for better text contrast */
+}
+
+/* ... existing code ... */
+
+.split-left {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background-image: url('assets/student_ivy.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* ... existing code ... */
+
+.visa-hero {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('assets/visa_hero_ivy.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: 60px;
+    /* Slight offset for nav */
+}
+
+/* ... existing code ... */
+
+.contact-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-image: url('assets/academic_pattern.png');
+    background-color: #000c18;
+    background-repeat: repeat;
 }
 
 .hero-content {
@@ -136,6 +185,10 @@ nav a.active {
     text-align: center;
     padding: 0 20px;
     background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 12, 24, 0.6) 100%);
+    position: relative;
+    /* Ensure z-index works */
+    z-index: 10;
+    /* Fix clickability issue */
 }
 
 .hero-title {
@@ -394,5 +447,489 @@ footer {
     .footer-group {
         height: auto;
         padding: 60px 20px;
+    }
+}
+
+/* Page Body specific (Non-parallax pages) */
+.page-body {
+    background-color: var(--bg-deep);
+    overflow-y: auto;
+    /* Enable scrolling for standard pages */
+    min-height: 100vh;
+}
+
+/* Split Layout System */
+.split-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 80px;
+    /* Space for fixed nav */
+    box-sizing: border-box;
+}
+
+.split-left {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    background-image: url('assets/student_emotional.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.split-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 12, 24, 0.8), rgba(0, 12, 24, 0.4));
+    z-index: 1;
+}
+
+.split-content-wrapper {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.split-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.split-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+.split-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: radial-gradient(circle at center, #001f3f 0%, #000c18 100%);
+}
+
+/* Form Styling */
+.form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.03);
+    /* Subtle glass */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-wrapper h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.form-desc {
+    margin-bottom: 30px;
+    color: #a0aab5;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent-cyan);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: white;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    /* Remove default appearance */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+/* Custom dropdown arrow if needed, but default is usually fine for MVP */
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+.form-group select option {
+    background-color: var(--bg-deep);
+    color: white;
+}
+
+.full-width {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Responsive Split */
+@media (max-width: 900px) {
+    .split-container {
+        flex-direction: column;
+    }
+
+    .split-left {
+        min-height: 300px;
+        padding: 40px 20px;
+        flex: none;
+    }
+
+    .split-title {
+        font-size: 2.5rem;
+    }
+
+    .split-right {
+        padding: 40px 20px;
+        flex: none;
+    }
+}
+
+/* Visa Page Styles */
+.visa-hero {
+    height: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('assets/visa_hero.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: 60px;
+    /* Slight offset for nav */
+}
+
+.visa-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 12, 24, 0.7);
+}
+
+.visa-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.visa-hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.text-orange {
+    color: var(--accent-orange);
+}
+
+.visa-hero-content p {
+    font-size: 1.1rem;
+    color: #e0e6ed;
+}
+
+.visa-content {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: white;
+}
+
+/* Accordion */
+.accordion-wrapper {
+    max-width: 800px;
+    margin: 0 auto 100px;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.accordion-header {
+    background: transparent;
+    cursor: pointer;
+    padding: 25px 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-main);
+}
+
+.accordion-header:hover,
+.accordion-header.active {
+    color: var(--accent-orange);
+}
+
+.visa-type {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 400;
+}
+
+.accordion-content {
+    padding: 0 10px;
+    background-color: transparent;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-content p {
+    padding-bottom: 25px;
+    line-height: 1.6;
+    color: #a0aab5;
+    margin-top: 5px;
+}
+
+/* Checklist Box */
+.checklist-section {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 60px 40px;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.checklist-section h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.check-icon {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.checklist-item p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.cta-center {
+    text-align: center;
+}
+
+/* Contact Page Styles */
+.contact-split-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 80px;
+    box-sizing: border-box;
+}
+
+.contact-left {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(135deg, #001226 0%, #000810 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: white;
+    margin: 0 0 10px 0;
+}
+
+.contact-intro {
+    font-size: 1.2rem;
+    color: #a0aab5;
+    margin-bottom: 40px;
+}
+
+.contact-info-list {
+    margin-bottom: 40px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 153, 0, 0.1);
+    border: 1px solid rgba(255, 153, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: var(--accent-orange);
+}
+
+.info-text h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-text p {
+    margin: 5px 0 0 0;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.map-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.map-placeholder img:hover {
+    opacity: 1;
+}
+
+.contact-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-image: url('assets/academic_pattern.png');
+    background-color: #000c18;
+    background-repeat: repeat;
+}
+
+.contact-form-card {
+    background: rgba(0, 12, 24, 0.6);
+    backdrop-filter: blur(20px);
+}
+
+/* Responsive for Contact */
+@media (max-width: 900px) {
+    .contact-split-container {
+        flex-direction: column;
+    }
+
+    .contact-left {
+        padding: 40px 20px;
+        flex: none;
+    }
+
+    .contact-right {
+        padding: 40px 20px;
+        flex: none;
+    }
+
+    .map-placeholder {
+        height: 200px;
     }
 }

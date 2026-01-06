@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Global Path</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="page-body">
+
+    <header class="glass-nav">
+        <div class="logo">HYPER B CONSULTING</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#programs">Programs</a>
+            <a href="visa.html">Visa</a>
+            <a href="contact.html" class="active nav-cta">Contact</a>
+        </nav>
+    </header>
+
+    <div class="contact-split-container">
+
+        <!-- Left: Contact Info & Map -->
+        <div class="contact-left">
+            <h1 class="contact-title">Contact Us</h1>
+            <p class="contact-intro">We are here to help your journey.</p>
+
+            <div class="contact-info-list">
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <h3>Address</h3>
+                        <p>경기도 성남시 분당구 금곡동 41, 413호</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-text">
+                        <h3>Email</h3>
+                        <p>backboardleb@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-text">
+                        <h3>Phone</h3>
+                        <p>+82 10 3814 0117</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-placeholder">
+                <img src="assets/map_vintage.png" alt="Map Location">
+            </div>
+        </div>
+
+        <!-- Right: Message Form -->
+        <div class="contact-right">
+            <div class="form-wrapper glass-card contact-form-card">
+                <h2>Send Message</h2>
+                <p class="form-desc">Hyper B 팀은 24시간 이내에 답변드립니다.</p>
+
+                <form class="apply-form">
+                    <div class="form-group">
+                        <label for="c-name">Name</label>
+                        <input type="text" id="c-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-contact">Contact Number</label>
+                        <input type="text" id="c-contact" name="contact" placeholder="010-0000-0000" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-email">Email</label>
+                        <input type="email" id="c-email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-message">Message</label>
+                        <textarea id="c-message" name="message" rows="5" placeholder="문의 내용을 입력해주세요."
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="cta-btn main-cta full-width">문의하기</button>
+                    <p class="form-note">Your inquiry is confidential.</p>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
