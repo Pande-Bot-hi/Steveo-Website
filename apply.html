@@ -78,6 +78,34 @@
                     <button type="submit" class="cta-btn main-cta full-width">무료 로드맵 받아보기</button>
                     <p class="form-note">We value your privacy. Your info is safe with us.</p>
                 </form>
+                <script>
+                    document.querySelector('.apply-form').addEventListener('submit', function (e) {
+                        e.preventDefault();
+                        const form = e.target;
+                        const data = new FormData(form);
+                        fetch(form.action, {
+                            method: form.method,
+                            body: data,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        }).then(response => {
+                            if (response.ok) {
+                                window.location.href = 'thank-you.html';
+                            } else {
+                                response.json().then(data => {
+                                    if (Object.hasOwn(data, 'errors')) {
+                                        alert(data["errors"].map(error => error["message"]).join(", "));
+                                    } else {
+                                        alert("Oops! There was a problem submitting your form");
+                                    }
+                                })
+                            }
+                        }).catch(error => {
+                            alert("Oops! There was a problem submitting your form");
+                        });
+                    });
+                </script>
             </div>
         </div>
 
