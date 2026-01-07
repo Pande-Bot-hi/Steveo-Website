@@ -1,12 +1,16 @@
 /* Global Reset & Base Styles */
 :root {
-    --bg-deep: #000c18;
+    --bg-deep: #f0f2f5;
+    /* Slightly darker grey than pure white/f8f9fa */
     --primary-navy: #00234E;
-    --accent-cyan: #00f0ff;
+    --accent-cyan: #00a8b5;
+    --accent-sky: #87CEEB;
+    /* Sky Blue for banner */
     --accent-orange: #FF9900;
-    --text-light: #e0e6ed;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-light: #1a202c;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    /* Less transparent for better readability on grey */
+    --glass-border: rgba(0, 0, 0, 0.08);
     --font-main: 'Inter', sans-serif;
     --font-display: 'Outfit', sans-serif;
 }
@@ -18,7 +22,6 @@ body {
     color: var(--text-light);
     background-color: var(--bg-deep);
     overflow: hidden;
-    /* Important for parallax wrapper to handle scroll */
 }
 
 /* Parallax Mechanics */
@@ -27,7 +30,6 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 300px;
-    /* Depth of the scene */
     scroll-behavior: smooth;
 }
 
@@ -44,15 +46,12 @@ body {
     right: 0;
     bottom: 0;
     pointer-events: none;
-    /* vital for click-through */
 }
 
-/* Enable clicks on content */
 .parallax-layer>* {
     pointer-events: auto;
 }
 
-/* Depth Levels */
 .parallax-layer--base {
     transform: translateZ(0);
     z-index: 2;
@@ -60,7 +59,6 @@ body {
 
 .parallax-layer--back {
     transform: translateZ(-300px) scale(2);
-    /* Pushed back and scaled up */
     z-index: 1;
 }
 
@@ -69,7 +67,7 @@ body {
     z-index: 0;
 }
 
-/* Navigation */
+/* Navigation - Sky Blue as requested */
 .glass-nav {
     position: fixed;
     top: 0;
@@ -79,11 +77,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 12, 24, 0.7);
-    backdrop-filter: blur(12px);
+    background: var(--accent-sky);
+    /* Sky Blue Nav */
     z-index: 100;
     box-sizing: border-box;
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -91,38 +90,32 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     color: white;
+    /* White on blue */
     letter-spacing: 1px;
 }
 
-.nano-tag {
-    font-size: 0.8rem;
-    color: var(--accent-cyan);
-    border: 1px solid var(--accent-cyan);
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 8px;
-    text-transform: uppercase;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-}
-
 nav a {
-    color: var(--text-light);
+    color: white;
+    /* White on blue */
     text-decoration: none;
     margin-left: 2rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: color 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-    color: var(--accent-cyan);
+    color: var(--primary-navy);
 }
 
 .nav-cta {
-    background: var(--glass-bg);
+    background: white;
     padding: 8px 20px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    color: var(--primary-navy);
+    /* Ensure text is readable */
 }
 
 /* Hero Section */
@@ -130,50 +123,7 @@ nav a.active {
     background-image: url('assets/university_hero_ivy.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.7);
-    /* Slightly darker for better text contrast */
-}
-
-/* ... existing code ... */
-
-.split-left {
-    flex: 1;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 60px;
-    background-image: url('assets/student_ivy.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/* ... existing code ... */
-
-.visa-hero {
-    height: 400px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('assets/visa_hero_ivy.png');
-    background-size: cover;
-    background-position: center;
-    margin-top: 60px;
-    /* Slight offset for nav */
-}
-
-/* ... existing code ... */
-
-.contact-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    background-image: url('assets/academic_pattern.png');
-    background-color: #000c18;
-    background-repeat: repeat;
+    filter: brightness(1.0);
 }
 
 .hero-content {
@@ -184,11 +134,10 @@ nav a.active {
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 12, 24, 0.6) 100%);
+    background: transparent;
+    /* Remove blue overlay here so image is clear */
     position: relative;
-    /* Ensure z-index works */
     z-index: 10;
-    /* Fix clickability issue */
 }
 
 .hero-title {
@@ -197,22 +146,27 @@ nav a.active {
     line-height: 1.1;
     margin: 0;
     text-transform: uppercase;
+    color: var(--primary-navy);
 }
 
+/* Gradient text needs to pop against the image now */
 .text-gradient {
-    background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /* Using a simpler white/navy contrast for readability */
+    color: white;
+    background: none;
+    -webkit-text-fill-color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     max-width: 600px;
     margin: 2rem 0;
-    color: #e0e6ed;
+    color: white;
+    /* White text for better contrast on hero image without overlay */
     line-height: 1.6;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -229,26 +183,26 @@ nav a.active {
 }
 
 .main-cta {
-    background: var(--accent-orange);
+    background: var(--primary-navy);
     color: white;
-    box-shadow: 0 4px 20px rgba(255, 153, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 35, 78, 0.3);
 }
 
 .main-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(255, 153, 0, 0.6);
+    background: #003366;
+    box-shadow: 0 6px 20px rgba(0, 35, 78, 0.4);
 }
 
 /* Features Section */
 .content-group {
     background-color: var(--bg-deep);
-    /* Fallback */
 }
 
 .pattern-bg {
     background-image: url('assets/tech_pattern.png');
     background-repeat: repeat;
-    opacity: 0.15;
+    opacity: 0.05;
 }
 
 .section-container {
@@ -266,7 +220,7 @@ nav a.active {
     font-family: var(--font-display);
     font-size: 3rem;
     margin: 0;
-    color: white;
+    color: var(--primary-navy);
 }
 
 .divider {
@@ -277,6 +231,7 @@ nav a.active {
     border-radius: 2px;
 }
 
+/* Cards */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -284,27 +239,26 @@ nav a.active {
 }
 
 .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Clean border */
     padding: 40px 30px;
     border-radius: 20px;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    cursor: pointer;
 }
 
 .glass-card:hover {
     transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .icon-wrapper {
     font-size: 3rem;
     margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #e6fffa;
+    /* Very Light cyan */
     width: 80px;
     height: 80px;
     display: flex;
@@ -316,156 +270,205 @@ nav a.active {
 .glass-card h3 {
     font-size: 1.5rem;
     margin: 10px 0;
-    color: white;
+    color: var(--primary-navy);
 }
 
 .glass-card p {
-    color: #a0aab5;
+    color: #4a5568;
     line-height: 1.6;
 }
 
-/* Footer Section */
+/* Footer Group Override for new content */
 .footer-group {
-    height: 50vh;
-    /* Shorter section */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: black;
-    position: relative;
-    z-index: 2;
-    /* Ensure it sits on top if needed */
+    background: white;
+    height: auto;
+    min-height: 100vh;
+    /* Allow it to grow */
+    display: block;
+    /* Normal block flow */
 }
 
-.footer-content {
+/* Virginia Section (Footer Replacement) */
+.virginia-section {
+    padding: 100px 20px;
+    background: white;
     text-align: center;
-    width: 100%;
+    color: var(--primary-navy);
 }
 
-.secondary-cta {
-    background: transparent;
-    border: 2px solid var(--accent-cyan);
+.virginia-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-navy);
+}
+
+.virginia-subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-orange);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.virginia-desc {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin-bottom: 50px;
+}
+
+.virginia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 50px;
+    text-align: left;
+}
+
+.virginia-item {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    font-weight: 500;
+    color: var(--primary-navy);
+}
+
+.virginia-item::before {
+    content: '✔️';
+    margin-right: 15px;
     color: var(--accent-cyan);
-}
-
-.secondary-cta:hover {
-    background: var(--accent-cyan);
-    color: black;
-    box-shadow: 0 0 20px var(--accent-cyan);
 }
 
 footer {
     margin-top: 50px;
     font-size: 0.9rem;
-    color: #555;
-    border-top: 1px solid #111;
+    color: #718096;
+    border-top: 1px solid #cbd5e0;
     padding-top: 20px;
     width: 100%;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    body {
-        overflow-y: auto;
-        /* Allow normal scrolling */
-        overflow-x: hidden;
-    }
-
-    .parallax-wrapper {
-        height: auto;
-        overflow-x: hidden;
-        overflow-y: visible;
-        perspective: none;
-        /* Disable 3D perspective */
-        transform-style: flat;
-    }
-
-    .parallax-group {
-        height: auto;
-        /* Allow content to dictate height */
-        min-height: 100vh;
-        transform-style: flat;
-        position: relative;
-        overflow: hidden;
-        /* Contain children */
-    }
-
-    .parallax-layer {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        transform: none !important;
-        /* Reset 3D transforms */
-    }
-
-    .parallax-layer--base {
-        position: relative;
-        /* Make base layer relative to stack normally */
-    }
-
-    /* Adjust specific layer styles for flat layout */
-    .parallax-layer--back {
-        z-index: 0;
-    }
-
-    .hero-group .parallax-layer--back {
-        /* Since we removed scale(2), we need to ensure it covers */
-        height: 100%;
-        min-height: 100vh;
-    }
-
-    .hero-title {
-        font-size: 2.8rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-        padding: 0 10px;
-    }
-
-    .glass-nav {
-        padding: 1rem;
-    }
-
-    .glass-nav nav {
-        display: none;
-        /* Hide main nav text for simplicity or add hamburger later */
-    }
-
-    /* Optional: Show just CTA or simple menu? Let's keep it simple for now */
-
-    .section-container {
-        padding: 60px 20px;
-    }
-
-    .features-grid {
-        grid-template-columns: 1fr;
-        /* Single column */
-    }
-
-    .footer-group {
-        height: auto;
-        padding: 60px 20px;
-    }
 }
 
 /* Page Body specific (Non-parallax pages) */
 .page-body {
     background-color: var(--bg-deep);
     overflow-y: auto;
-    /* Enable scrolling for standard pages */
     min-height: 100vh;
 }
 
-/* Split Layout System */
+/* --- Detailed Page Styles (Value Education, etc) --- */
+.page-hero {
+    height: 60vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(1px);
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 60px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    max-width: 800px;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    color: var(--primary-navy);
+    margin: 0 0 10px;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: #4a5568;
+    margin: 0;
+}
+
+.content-section {
+    padding: 80px 20px;
+    background: var(--bg-deep);
+    /* Use global grey background */
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.intro-box {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--primary-navy);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.detail-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--accent-orange);
+    transition: transform 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-5px);
+}
+
+.detail-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--primary-navy);
+    margin-top: 0;
+}
+
+.detail-card p {
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* --- Split Layout System (Apply Page Fix) --- */
 .split-container {
     display: flex;
     min-height: 100vh;
     width: 100%;
-    padding-top: 80px;
-    /* Space for fixed nav */
+    padding-top: 100px;
+    /* Increased padding to prevent cut-off */
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .split-left {
@@ -480,13 +483,14 @@ footer {
     background-position: center;
 }
 
+/* Ensure background image is visible */
 .split-image-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 12, 24, 0.8), rgba(0, 12, 24, 0.4));
+    background: linear-gradient(to right, rgba(240, 242, 245, 0.9), rgba(240, 242, 245, 0.2));
     z-index: 1;
 }
 
@@ -501,14 +505,12 @@ footer {
     font-size: 3.5rem;
     line-height: 1.2;
     margin-bottom: 20px;
-    color: white;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--primary-navy);
 }
 
 .split-subtitle {
     font-size: 1.2rem;
-    color: var(--text-light);
-    opacity: 0.9;
+    color: #4a5568;
 }
 
 .split-right {
@@ -516,303 +518,17 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
-    background: radial-gradient(circle at center, #001f3f 0%, #000c18 100%);
-}
-
-/* Form Styling */
-.form-wrapper {
-    width: 100%;
-    max-width: 500px;
-    background: rgba(255, 255, 255, 0.03);
-    /* Subtle glass */
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.form-wrapper h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    margin-top: 0;
-    margin-bottom: 10px;
-    color: white;
-}
-
-.form-desc {
-    margin-bottom: 30px;
-    color: #a0aab5;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--accent-cyan);
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    color: white;
-    font-family: var(--font-main);
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    box-sizing: border-box;
-    /* Remove default appearance */
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.select-wrapper {
-    position: relative;
-}
-
-/* Custom dropdown arrow if needed, but default is usually fine for MVP */
-.select-wrapper::after {
-    content: '▼';
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-light);
-    pointer-events: none;
-    font-size: 0.8rem;
-}
-
-.form-group select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-}
-
-.form-group select option {
-    background-color: var(--bg-deep);
-    color: white;
-}
-
-.full-width {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.form-note {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #555;
-    margin-top: 20px;
-}
-
-/* Responsive Split */
-@media (max-width: 900px) {
-    .split-container {
-        flex-direction: column;
-    }
-
-    .split-left {
-        min-height: 300px;
-        padding: 40px 20px;
-        flex: none;
-    }
-
-    .split-title {
-        font-size: 2.5rem;
-    }
-
-    .split-right {
-        padding: 40px 20px;
-        flex: none;
-    }
-}
-
-/* Visa Page Styles */
-.visa-hero {
-    height: 400px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('assets/visa_hero.png');
-    background-size: cover;
-    background-position: center;
-    margin-top: 60px;
-    /* Slight offset for nav */
-}
-
-.visa-hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 12, 24, 0.7);
-}
-
-.visa-hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.visa-hero-content h1 {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    color: white;
-    margin-bottom: 20px;
-}
-
-.text-orange {
-    color: var(--accent-orange);
-}
-
-.visa-hero-content p {
-    font-size: 1.1rem;
-    color: #e0e6ed;
-}
-
-.visa-content {
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-
-.section-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 60px;
-    color: white;
-}
-
-/* Accordion */
-.accordion-wrapper {
-    max-width: 800px;
-    margin: 0 auto 100px;
-}
-
-.accordion-item {
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.accordion-header {
-    background: transparent;
-    cursor: pointer;
-    padding: 25px 10px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-main);
-}
-
-.accordion-header:hover,
-.accordion-header.active {
-    color: var(--accent-orange);
-}
-
-.visa-type {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    background: rgba(255, 255, 255, 0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 400;
-}
-
-.accordion-content {
-    padding: 0 10px;
-    background-color: transparent;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-}
-
-.accordion-content p {
-    padding-bottom: 25px;
-    line-height: 1.6;
-    color: #a0aab5;
-    margin-top: 5px;
-}
-
-/* Checklist Box */
-.checklist-section {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 60px 40px;
-    margin-bottom: 80px;
-    text-align: center;
-}
-
-.checklist-section h2 {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: white;
-}
-
-.checklist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    text-align: left;
-}
-
-.checklist-item {
-    display: flex;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 15px 20px;
-    border-radius: 10px;
-}
-
-.check-icon {
-    color: var(--accent-cyan);
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-right: 15px;
-}
-
-.checklist-item p {
-    margin: 0;
-    color: var(--text-light);
-}
-
-.cta-center {
-    text-align: center;
+    padding: 60px;
+    background: #f0f2f5;
 }
 
 /* Contact Page Styles */
 .contact-split-container {
     display: flex;
-    min-height: 100vh;
-    width: 100%;
+    min-height: calc(100vh - 80px);
     padding-top: 80px;
-    box-sizing: border-box;
+    background: var(--bg-deep);
+    align-items: stretch;
 }
 
 .contact-left {
@@ -821,21 +537,28 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(135deg, #001226 0%, #000810 100%);
-    position: relative;
-    overflow: hidden;
+    background: white;
+}
+
+.contact-right {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
 }
 
 .contact-title {
     font-family: var(--font-display);
     font-size: 3.5rem;
-    color: white;
-    margin: 0 0 10px 0;
+    color: var(--primary-navy);
+    margin-bottom: 10px;
 }
 
 .contact-intro {
     font-size: 1.2rem;
-    color: #a0aab5;
+    color: #4a5568;
     margin-bottom: 40px;
 }
 
@@ -845,91 +568,189 @@ footer {
 
 .info-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 25px;
+    align-items: start;
+    margin-bottom: 30px;
 }
 
 .info-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 153, 0, 0.1);
-    border: 1px solid rgba(255, 153, 0, 0.3);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 1.5rem;
     margin-right: 20px;
-    color: var(--accent-orange);
+    background: #f0f4f8;
+    padding: 10px;
+    border-radius: 12px;
 }
 
 .info-text h3 {
-    margin: 0;
-    font-size: 0.9rem;
-    color: var(--accent-cyan);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0 0 5px;
+    font-size: 1.1rem;
+    color: var(--primary-navy);
 }
 
 .info-text p {
-    margin: 5px 0 0 0;
-    color: white;
-    font-size: 1.1rem;
+    margin: 0;
+    color: #4a5568;
 }
 
 .map-placeholder {
     width: 100%;
-    height: 250px;
+    height: 300px;
     border-radius: 20px;
     overflow: hidden;
-    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .map-placeholder img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.8;
-    transition: opacity 0.3s;
 }
 
-.map-placeholder img:hover {
-    opacity: 1;
-}
-
-.contact-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Form Card Fix */
+.form-wrapper {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 24px;
     padding: 40px;
-    background-image: url('assets/academic_pattern.png');
-    background-color: #000c18;
-    background-repeat: repeat;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    /* Clean shadow */
+    border: none;
 }
 
-.contact-form-card {
-    background: rgba(0, 12, 24, 0.6);
-    backdrop-filter: blur(20px);
+.form-wrapper h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--primary-navy);
 }
 
-/* Responsive for Contact */
-@media (max-width: 900px) {
+.form-desc {
+    margin-bottom: 30px;
+    color: #4a5568;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-navy);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: var(--primary-navy);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    background: white;
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 4px rgba(0, 168, 181, 0.1);
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4a5568;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.form-group select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 20px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .glass-nav {
+        padding: 1rem;
+    }
+
+    .glass-nav nav {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .split-container {
+        flex-direction: column;
+        padding-top: 60px;
+        /* Smaller header overlap on mobile */
+    }
+
+    .split-left,
+    .split-right,
+    .contact-left,
+    .contact-right {
+        padding: 40px 20px;
+        flex: none;
+        min-height: auto;
+    }
+
     .contact-split-container {
         flex-direction: column;
     }
 
-    .contact-left {
-        padding: 40px 20px;
-        flex: none;
-    }
-
-    .contact-right {
-        padding: 40px 20px;
-        flex: none;
-    }
-
     .map-placeholder {
-        height: 200px;
+        height: 250px;
+    }
+
+    .detail-grid,
+    .features-grid,
+    .virginia-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-hero {
+        height: 50vh;
+        background-attachment: scroll;
+    }
+
+    .virginia-title {
+        font-size: 2.2rem;
     }
 }
